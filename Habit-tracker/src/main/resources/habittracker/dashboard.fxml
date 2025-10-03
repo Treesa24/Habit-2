@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@dashboard.css"
+            fx:controller="org.habittracker.controllers.DashboardController">
+
+    <!-- Top Navigation Bar with Month Selector and Logout -->
+    <top>
+        <HBox spacing="20" alignment="CENTER" styleClass="top-nav">
+            <children>
+                <!-- Month Navigation -->
+                <HBox spacing="15" alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <Button fx:id="prevMonthBtn" text="(" styleClass="nav-button" onAction="#handlePrevMonth"/>
+                    <Label fx:id="monthYearLabel" text="September 2025" styleClass="month-label"/>
+                    <Button fx:id="nextMonthBtn" text=")" styleClass="nav-button" onAction="#handleNextMonth"/>
+                </HBox>
+
+                <!-- Logout Button -->
+                <Button fx:id="logoutBtn" text="Logout" onAction="#handleLogout"/>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- Main Content Area -->
+    <center>
+        <HBox spacing="30" styleClass="content-container">
+
+            <!-- Calendar Section (Left/Center) -->
+            <VBox spacing="20" HBox.hgrow="ALWAYS">
+                <children>
+                    <!-- Calendar Grid -->
+                    <VBox styleClass="calendar-section" VBox.vgrow="ALWAYS">
+                        <children>
+                            <GridPane fx:id="calendarGrid" styleClass="calendar-root">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                    <ColumnConstraints hgrow="ALWAYS" percentWidth="14.28"/>
+                                </columnConstraints>
+                            </GridPane>
+                        </children>
+                    </VBox>
+
+                    <!-- Bottom Progress and Buttons -->
+                    <VBox styleClass="bottom-section">
+                        <children>
+                            <Label fx:id="statusLabel" text="Today's Progress: 2/2 habits completed" styleClass="progress-label"/>
+
+                            <HBox spacing="15" alignment="CENTER" styleClass="button-container">
+                                <Button text="+ Add Habit" fx:id="addBtn" onAction="#handleAdd"/>
+                                <Button text="Edit" fx:id="editBtn" onAction="#handleEdit"/>
+                                <Button text="Delete" fx:id="deleteBtn" onAction="#handleDelete"/>
+                            </HBox>
+                        </children>
+                    </VBox>
+                </children>
+            </VBox>
+
+            <!-- Right Sidebar - Your Habits -->
+            <VBox styleClass="habits-sidebar" spacing="15">
+                <children>
+                    <Label text="Your Habits" styleClass="habits-title"/>
+
+                    <VBox fx:id="habitsContainer" spacing="10">
+                        <!-- Habit items will be added dynamically -->
+                    </VBox>
+                </children>
+            </VBox>
+
+        </HBox>
+    </center>
+
+</BorderPane>
